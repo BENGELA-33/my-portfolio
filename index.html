@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小禾的作品展示网站</title>
+  <style>
+    /* 基础：浅灰背景、白色区块、深绿色主要链接 */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    .block {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 30px;
+      margin: 0 0 8px;
+      color: #0f172a;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 0 0 12px;
+      color: #0f172a;
+    }
+    h3 {
+      font-size: 18px;
+      margin: 4px 0 6px;
+      color: #0f172a;
+    }
+    .intro p {
+      margin: 0 0 16px;
+    }
+    /* 主操作按钮：深绿底白字 */
+    .btn {
+      display: inline-block;
+      background: #166534;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .btn:hover { background: #14532d; }
+    /* 学习链接：深绿色文字链接 */
+    .link {
+      color: #166534;
+      font-weight: bold;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 13px;
+      color: #166534;
+      background: #dcfce7;
+      border-radius: 4px;
+      padding: 1px 8px;
+      margin: 0 0 4px;
+    }
+    /* 作品卡片：手机竖排，640px 以上三列 */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+    }
+    /* 卡片本体：浅色底，让图片与对应文字成组显示 */
+    .card {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      margin: 0;
+    }
+    .card.is-hidden {
+      display: none;
+    }
+    /* 类别筛选按钮与状态提示 */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 8px;
+    }
+    .filter-btn {
+      font: inherit;
+      font-size: 15px;
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 6px 16px;
+      cursor: pointer;
+    }
+    .filter-btn[aria-pressed="true"] {
+      background: #166534;
+      border-color: #166534;
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .filter-btn:focus-visible {
+      outline: 2px solid #166534;
+      outline-offset: 2px;
+    }
+    .filter-status {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0 0 12px;
+    }
+    .filter-empty {
+      font-size: 14px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 0 0 12px;
+    }
+    .footer-note {
+      font-size: 13px;
+      color: #64748b;
+      text-align: center;
+      margin: 0;
+    }
+    /* 页内导航 */
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 24px;
+      margin-bottom: 20px;
+    }
+    .site-nav a {
+      color: #166534;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 4px 0;
+    }
+    .site-nav a:hover {
+      text-decoration: underline;
+    }
+    .detail-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: #166534;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <nav class="site-nav" aria-label="页内导航">
+      <a href="#intro">首页介绍</a>
+      <a href="#about">关于我</a>
+      <a href="#works">作品</a>
+      <a href="#contact">联系区</a>
+    </nav>
+
+    <!-- 区块一：介绍 -->
+    <header class="block intro" id="intro">
+      <h1>你好，我是小禾</h1>
+      <p>我喜欢散步和观察日常细节，欢迎看看我的练习作品。</p>
+      <a class="btn" href="#works">看看我的作品</a>
+    </header>
+
+    <!-- 区块二：关于我 -->
+    <section class="block" id="about">
+      <h2>关于我</h2>
+      <p>我用练习作品记录校园、城市和周末生活。这些内容用于学习制作个人作品展示网站。</p>
+    </section>
+
+    <!-- 区块三：作品 -->
+    <section class="block" id="works">
+      <h2>作品</h2>
+      <div class="filters" role="group" aria-label="按类别筛选作品">
+        <button type="button" class="filter-btn" data-filter="全部" aria-pressed="true">全部</button>
+        <button type="button" class="filter-btn" data-filter="校园" aria-pressed="false">校园</button>
+        <button type="button" class="filter-btn" data-filter="城市" aria-pressed="false">城市</button>
+        <button type="button" class="filter-btn" data-filter="生活" aria-pressed="false">生活</button>
+      </div>
+      <p class="filter-status" id="filter-status" aria-live="polite">当前：全部 · 共 3 项</p>
+      <p class="filter-empty" id="filter-empty" hidden></p>
+      <div class="cards">
+        <article class="card" data-category="校园">
+          <img src="images/walkway.png" alt="示意插画：树影与弯曲的校园步道">
+          <p class="tag">校园</p>
+          <h3>校园步道</h3>
+          <p>以步道上的树影与拐角为主题的练习作品。</p>
+          <a class="detail-link" href="work-campus.html">查看校园步道详情</a>
+        </article>
+        <article class="card" data-category="城市">
+          <img src="images/city.jpg" alt="示意插画：城市建筑与道路">
+          <p class="tag">城市</p>
+          <h3>城市散步</h3>
+          <p>以城市建筑与道路为主题的练习作品。</p>
+        </article>
+        <article class="card" data-category="生活">
+          <img src="images/weekend.jpg" alt="示意插画：窗边的一盆植物">
+          <p class="tag">生活</p>
+          <h3>周末随拍</h3>
+          <p>以周末窗边小景为主题的练习作品。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 区块四：联系 -->
+    <section class="block" id="contact">
+      <h2>联系</h2>
+      <p>这是课程练习网站，暂不提供真实联系方式，也不接收留言。</p>
+      <p><a class="link" href="https://www.w3cschool.cn/" target="_blank" rel="noopener">访问编程狮</a>（练习链接）</p>
+    </section>
+
+    <footer>
+      <p class="footer-note">人物与文字为虚构教学素材，图片为课程自制示意插画；不代表真实摄影作品或真实经历。</p>
+    </footer>
+
+  </main>
+
+  <script>
+    // 作品筛选：全部 / 校园 / 城市 / 生活；仅在浏览器内处理，不删除作品
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+      var status = document.getElementById('filter-status');
+      var empty = document.getElementById('filter-empty');
+
+      function applyFilter(filter) {
+        buttons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.dataset.filter === filter ? 'true' : 'false');
+        });
+        var shown = 0;
+        cards.forEach(function (card) {
+          var match = filter === '全部' || card.dataset.category === filter;
+          card.classList.toggle('is-hidden', !match);
+          if (match) { shown += 1; }
+        });
+        status.textContent = '当前：' + filter + ' · 共 ' + shown + ' 项';
+        if (shown === 0) {
+          empty.textContent = '当前类别「' + filter + '」暂无作品。可选其他类别或点「全部」。';
+          empty.hidden = false;
+        } else {
+          empty.hidden = true;
+        }
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyFilter(btn.dataset.filter);
+        });
+      });
+
+      // 刷新后按约定恢复全部
+      applyFilter('全部');
+    })();
+  </script>
+</body>
+</html>
